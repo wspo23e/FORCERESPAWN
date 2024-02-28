@@ -1,0 +1,22 @@
+while true do
+    wait()
+    game.Players.LocalPlayer.CharacterAdded:Connect(function()
+        local character = game.Players.LocalPlayer.Character
+        local startPos = character:WaitForChild("HumanoidRootPart").Position
+        
+        local function forceRespawn()
+            while true do
+                wait(0.1)
+                character:Destroy()
+                wait()
+                game.Players.Respawn()
+                wait(0.4)
+                character = game.Players.LocalPlayer.Character
+                character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(startPos)
+            end
+        end
+        
+        forceRespawn()
+    end)
+end
+
